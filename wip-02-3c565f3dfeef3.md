@@ -7,17 +7,10 @@ A signer is a software as described in NIP-07/46/55.
 HKDF is NIP-44's key derivation function and it always
 uses "nip44-v2" as salt.
 
-This NIP allow using a string other than the above
-of up to 32 bytes as salt for any of the NIP-44 signer
-methods that uses that key derivation function internally.
-
-> [!IMPORTANT]
-> Honest signers must REJECT a method call
-> if the involved salt string starts with "!".
-
-> [!NOTE]
-> All data generated with a salt prefix with "!" is meant to
-> never leave the signer, i.e. to not be handled over to an app.
+This NIP allow using a salt string other than the above with
+[up to 32 bytes](https://github.com/nostr-protocol/nips/pull/940#issuecomment-1868027273)
+for any of the NIP-44 signer methods that uses that key
+derivation function internally.
 
 ### Update to NIP-44 "encrypt" and "decrypt" methods
 
