@@ -2,7 +2,7 @@
 
 `draft` `hierarchy` `tribe` `curation`
 
-This NIP defines a standard for building social hierarchies - called tribes. A tribe can collectively curate content.
+This NIP defines a standard for building social hierarchies - called tribes. A tribe manages its memberships and collectively curates content.
 
 The aim is to be able to build culturally coherent groups at scale. Hierarchies are known to be a battle-tested solution to this.
 
