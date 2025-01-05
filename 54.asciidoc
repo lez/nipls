@@ -1,0 +1,57 @@
+= NIP-altwiki
+:doctype: book
+
+== Wiki
+
+`draft` `optional`
+
+This NIP defines `kind:888` event for wiki articles.
+
+Differences from NIP-54:
+
+* Wiki editors are de-emphasized. Finding out which article to display is up to the wiki application.
+* Wiki articles are regular events in order to carry edit history.
+* No underspecified redirection events in this NIP (will be re-added later)
+* No merges and deferences. These were adding extra work to article owners (merge) and contributors (after-merge).
+
+=== Articles
+
+[,json]
+----
+{
+  "content": "A wiki is a hypertext publication collaboratively edited and managed by its own audience.",
+  "tags": [
+    ["d", "wiki"],
+    ["title", "Wiki"],
+    ["summary", "<what-changed>"],  // show in history view
+    ["e", "<parent-event-id>"],
+    ["y", "<root-event-id>"],
+  ]
+}
+----
+
+=== `d` tag normalization rules
+
+* Any non-letter character MUST be converted to a `-`.
+* All letters MUST be converted to lowercase.
+
+=== Content
+
+The `content` should be Asciidoc with two extra functionalities: *wikilinks* and *nostr:...* links.
+
+Unlike normal Asciidoc links `+http://example.com[]+` that link to external webpages, wikilinks `[[]]` link to other articles in the wiki. In this case, the wiki is the entirety of Nostr. Clicking on a wikilink should cause the client to ask relays for events with `d` tags equal to the target of that wikilink.
+
+Wikilinks can take these two forms:
+
+. `[[Target Page]]` -- in this case it will link to the page `target-page` (according to `d` tag normalization rules above) and be displayed as `Target Page`;
+. `[[target page|see this]]` -- in this case it will link to the page `target-page`, but will be displayed as `see this`.
+
+`+nostr:...+` links, as per xref:NIP-21[NIP-21], should link to profiles or arbitrary Nostr events.
+
+== How to decide what article to display
+
+Not discussed here.
+
+== Why Asciidoc?
+
+See NIP-54.
